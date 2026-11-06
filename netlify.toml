@@ -1,0 +1,27 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+  VITE_SUPABASE_URL = "https://svimjttmhnxdwtlbvmgm.supabase.co"
+  # Clave pública (anon): está pensada para ir en el navegador. La protección real son las políticas RLS.
+  VITE_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN2aW1qdHRtaG54ZHd0bGJ2bWdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM3MzczNzUsImV4cCI6MjEwOTMxMzM3NX0.w9_gds6tXLWV_0b0fBRtjySMyjxL66a3RbOfzj5K7Dg"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "no-referrer"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
